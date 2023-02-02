@@ -1,0 +1,9 @@
+{
+  "name": "primate/html",
+  "version": "0.1.0",
+  "author": "Terrablue <terrablue@proton.me>",
+  "bugs": "https://github.com/primatejs/primate-html/issues",
+  "repository": "https://github.com/primatejs/primate-html",
+  "description": "Primate HTML handler",
+  "license": "MIT"
+}

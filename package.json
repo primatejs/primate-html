@@ -1,0 +1,28 @@
+{
+  "name": "@primate/html",
+  "version": "0.1.0",
+  "author": "Terrablue <terrablue@proton.me>",
+  "homepage": "https://primatejs.com/handlers/html",
+  "bugs": "https://github.com/primatejs/primate-html/issues",
+  "repository": "https://github.com/primatejs/primate-html",
+  "description": "Primate HTML handler",
+  "license": "MIT",
+  "dependencies": {
+    "runtime-compat": "^0.12.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-syntax-import-assertions": "^7.20.0",
+    "eslint": "^8.33.0",
+    "eslint-plugin-json": "^3.1.0"
+  },
+  "scripts": {
+    "docs": "npx embedme --source-root examples --strip-embed-comment --stdout README.template.md > README.md"
+  },
+  "type": "module",
+  "exports": "./exports.js",
+  "engines": {
+    "node": ">=17.9.0"
+  }
+}
