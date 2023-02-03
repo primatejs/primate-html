@@ -8,12 +8,13 @@ const response = {
   headers: {"Content-Type": "text/html"},
 };
 
-const preset = new Path(import.meta.url).directory.join("index.html").file
+const index_html = "index.html";
+const preset = new Path(import.meta.url).directory.join(index_html).file
   .read();
 
 const getIndex = conf => {
   try {
-    return File.read(`${conf.paths.static}/${conf.files.index}`);
+    return File.read(`${conf.paths.static.join(index_html)}`);
   } catch (error) {
     return preset;
   }

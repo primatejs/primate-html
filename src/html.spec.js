@@ -2,7 +2,7 @@ export default test => {
   test.fix(({html}) => html);
 
   test.reassert(assert => async (template, expected) =>
-    assert((await template).body).equals(`<body>${expected}`));
+    assert((await template).body).equals(`<body>${expected}\n`));
 
   test.case("tag", (assert, html) => {
     assert(html`<div></div>`, "<div></div>");
