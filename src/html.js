@@ -1,4 +1,4 @@
-import {File} from "runtime-compat/filesystem";
+import {Path, File} from "runtime-compat/filesystem";
 import fulfill from "./fulfill.js";
 import flatten from "./flatten.js";
 
@@ -8,8 +8,20 @@ const response = {
   headers: {"Content-Type": "text/html"},
 };
 
+const preset = new Path(import.meta.url).directory.join("index.html").file
+  .read();
+
+const getIndex = conf => {
+  try {
+    return File.read(`${conf.paths.static}/${conf.files.index}`);
+  } catch (error) {
+    return preset;
+  }
+};
+
 export default (strings, ...keys) => async conf => {
-  const {paths: {components: path}, index} = conf;
+  const index = await getIndex(conf);
+  const {paths: {components: path}} = conf;
   const loadFile = async file => [file.base, (await file.read())
     .replaceAll("\n", "")];
   const components = await path.exists
