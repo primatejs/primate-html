@@ -4,17 +4,17 @@ import flatten from "./flatten.js";
 
 const last = -1;
 const response = {
-  code: 200,
+  status: 200,
   headers: {"Content-Type": "text/html"},
 };
 
 const index_html = "index.html";
-const preset = new Path(import.meta.url).directory.join(index_html).file
+const preset = await new Path(import.meta.url).directory.join(index_html).file
   .read();
 
-const getIndex = conf => {
+const getIndex = async conf => {
   try {
-    return File.read(`${conf.paths.static.join(index_html)}`);
+    return await File.read(`${conf.paths.static.join(index_html)}`);
   } catch (error) {
     return preset;
   }
