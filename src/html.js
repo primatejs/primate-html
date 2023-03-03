@@ -11,17 +11,17 @@ const index_html = "index.html";
 const preset = await new Path(import.meta.url).directory.join(index_html).file
   .read();
 
-const getIndex = async conf => {
+const getIndex = async env => {
   try {
-    return await File.read(`${conf.paths.static.join(index_html)}`);
+    return await File.read(`${env.paths.static.join(index_html)}`);
   } catch (error) {
     return preset;
   }
 };
 
-export default (strings, ...keys) => async conf => {
-  const index = await getIndex(conf);
-  const {paths: {components: path}} = conf;
+export default (strings, ...keys) => async env => {
+  const index = await getIndex(env);
+  const {paths: {components: path}} = env;
   const loadFile = async file => [file.base, (await file.read())
     .replaceAll("\n", "")];
   const components = await path.exists
