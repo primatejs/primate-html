@@ -8,6 +8,7 @@
   "description": "Primate HTML handler",
   "license": "MIT",
   "dependencies": {
+    "htmt": "file:../../htmt",
     "runtime-compat": "^0.12.3"
   },
   "devDependencies": {

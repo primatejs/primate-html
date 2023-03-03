@@ -1,6 +1,5 @@
 import {Path, File} from "runtime-compat/filesystem";
-import fulfill from "./fulfill.js";
-import flatten from "./flatten.js";
+import {fulfill, flatten} from "htmt";
 
 const last = -1;
 const response = {
