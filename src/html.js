@@ -2,10 +2,6 @@ import {Path, File} from "runtime-compat/filesystem";
 import {fulfill, flatten} from "htmt";
 
 const last = -1;
-const response = {
-  status: 200,
-  headers: {"Content-Type": "text/html"},
-};
 
 const index_html = "index.html";
 const preset = await new Path(import.meta.url).directory.join(index_html).file
@@ -19,7 +15,7 @@ const getIndex = async env => {
   }
 };
 
-export default (strings, ...keys) => async env => {
+export default (strings, ...keys) => async (env, headers) => {
   const index = await getIndex(env);
   const {paths: {components: path}} = env;
   const loadFile = async file => [file.base, (await file.read())
@@ -34,5 +30,11 @@ export default (strings, ...keys) => async env => {
     .join("") + strings[strings.length + last];
   const html = flatten(await fulfill(re, components, await Promise.all(keys)));
   const body = index.replace("<body>", () => `<body>${html}`);
-  return {...response, body};
+  const options = {
+    status: 200,
+    headers: {"Content-Type": "text/html", ...headers},
+  };
+
+  // -> spread into new Response()
+  return [body, options];
 };
